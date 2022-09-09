@@ -15,4 +15,6 @@ return {
   map({ opts.modkey }, 'k', function()
     awful.client.focus.byidx(-1)
   end, { description = 'focus previous by index', group = 'CLIENT' }),
+
+  map({ opts.modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = 'AWESOME' }),
 }
