@@ -15,6 +15,7 @@ awful.spawn.once 'xrandr --output eDP-1 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xrandr --output eDP-1 --off'
 awful.spawn.once 'xrandr --output HDMI-2 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xset r rate 500 60'
+awful.spawn.once 'picom --experimental-backend'
 
 tag.connect_signal('request::default_layouts', function()
   awful.layout.append_default_layouts {
