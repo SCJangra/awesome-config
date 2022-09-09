@@ -29,6 +29,13 @@ local global = {
   map({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = g.awesome }),
 }
 
+local client = {
+  map({ modkey, 'Shift' }, 'c', function(c)
+    c:kill()
+  end, { description = 'close', group = g.client }),
+}
+
 return {
   global = global,
+  client = client,
 }

@@ -42,4 +42,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
   }
 end)
 
+-- Keymaps
 awful.keyboard.append_global_keybindings(keymaps.global)
+client.connect_signal('request::default_keybindings', function()
+  awful.keyboard.append_client_keybindings(keymaps.client)
+end)
