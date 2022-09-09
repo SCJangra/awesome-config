@@ -6,6 +6,7 @@ local client = client
 
 require 'awful.autofocus'
 require 'awful.hotkeys_popup.keys'
+require 'wallpaper'
 
 local awful = require 'awful'
 local naughty = require 'naughty'
