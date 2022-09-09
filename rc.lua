@@ -2,6 +2,7 @@ package.path = '/home/scj/.config/awesome/?.lua;/home/scj/.config/awesome/?/init
 
 local screen = screen
 local tag = tag
+local client = client
 
 require 'awful.autofocus'
 require 'awful.hotkeys_popup.keys'
