@@ -1,4 +1,5 @@
 local awesome = awesome
+local client = client
 
 local awful = require 'awful'
 local spawn = awful.spawn
@@ -27,6 +28,35 @@ local global = {
   end, { description = 'focus previous by index', group = g.client }),
 
   map({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = g.awesome }),
+
+  map {
+    modifiers = { modkey },
+    keygroup = 'numrow',
+    description = 'only view tag',
+    group = 'tag',
+    on_press = function(index)
+      local screen = awful.screen.focused()
+      local tag = screen.tags[index]
+      if tag then
+        tag:view_only()
+      end
+    end,
+  },
+
+  map {
+    modifiers = { modkey, 'Shift' },
+    keygroup = 'numrow',
+    description = 'move focused client to tag',
+    group = 'tag',
+    on_press = function(index)
+      if client.focus then
+        local tag = client.focus.screen.tags[index]
+        if tag then
+          client.focus:move_to_tag(tag)
+        end
+      end
+    end,
+  },
 }
 
 local client = {
