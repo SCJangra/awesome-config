@@ -57,9 +57,26 @@ local global = {
       end
     end,
   },
+
+  map({ modkey }, 'p', function()
+    spawn 'rofi -show drun -modi drun -theme /home/scj/.config/rofi/blurry.rasi'
+  end, {
+    description = 'show launcher',
+    group = 'launcher',
+  }),
+
+  map({ modkey }, 'z', function()
+    spawn 'rofi-pass'
+  end, { description = 'show passwords' }),
+
+  map({ modkey, 'Shift' }, 'z', function()
+    spawn 'rofi-pass --insert'
+  end, {
+    description = 'show passwords',
+  }),
 }
 
-local client = {
+local client_maps = {
   map({ modkey, 'Shift' }, 'c', function(c)
     c:kill()
   end, { description = 'close', group = g.client }),
@@ -67,5 +84,5 @@ local client = {
 
 return {
   global = global,
-  client = client,
+  client = client_maps,
 }
