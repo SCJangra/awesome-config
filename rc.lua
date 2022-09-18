@@ -11,6 +11,7 @@ require 'wallpaper'
 local awful = require 'awful'
 local naughty = require 'naughty'
 local keymaps = require 'keymaps'
+local wibox = require 'wibox'
 
 awful.spawn.once 'xrandr --output eDP-1 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xrandr --output eDP-1 --off'
@@ -41,6 +42,32 @@ screen.connect_signal('request::desktop_decoration', function(s)
   s.mytaglist = awful.widget.taglist {
     screen = s,
     filter = awful.widget.taglist.filter.all,
+    buttons = {
+      awful.button({}, 1, function(t)
+        t:view_only()
+      end),
+
+      awful.button({ 'Mod4' }, 1, function(t)
+        if client.focus then
+          client.focus:move_to_tag(t)
+        end
+      end),
+
+      awful.button({}, 3, awful.tag.viewtoggle),
+      awful.button({ 'Mod4' }, 3, function(t)
+        if client.focus then
+          client.focus:toggle_tag(t)
+        end
+      end),
+
+      awful.button({}, 4, function(t)
+        awful.tag.viewprev(t.screen)
+      end),
+
+      awful.button({}, 5, function(t)
+        awful.tag.viewnext(t.screen)
+      end),
+    },
   }
 end)
 
