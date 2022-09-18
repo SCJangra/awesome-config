@@ -27,7 +27,9 @@ local global = {
     awful.client.focus.byidx(-1)
   end, { description = 'focus previous by index', group = g.client }),
 
-  map({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = g.awesome }),
+  map({ modkey }, 'r', awesome.restart, { description = 'reload awesome', group = g.awesome }),
+
+  map({ modkey }, 'q', awesome.quit, { description = 'quit awesome', group = g.awesome }),
 
   map {
     modifiers = { modkey },
@@ -62,7 +64,7 @@ local global = {
     spawn 'rofi -show drun -modi drun -theme /home/scj/.config/rofi/blurry.rasi'
   end, {
     description = 'show launcher',
-    group = 'launcher',
+    group = g.launcher,
   }),
 
   map({ modkey }, 'z', function()
@@ -80,6 +82,11 @@ local client_maps = {
   map({ modkey, 'Shift' }, 'c', function(c)
     c:kill()
   end, { description = 'close', group = g.client }),
+
+  map({ modkey }, 'm', function(c)
+    c.floating = not c.floating
+    c.maximized = not c.maximized
+  end, { description = '(un)maximize', group = g.client }),
 }
 
 return {
