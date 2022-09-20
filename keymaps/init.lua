@@ -19,6 +19,10 @@ local global = {
     spawn(opts.terminal)
   end, { description = 'launch terminal', group = g.launcher }),
 
+  map({ modkey, 'Shift' }, 'Return', function()
+    spawn 'neovide'
+  end, { description = 'launch neovide', group = g.launcher }),
+
   map({ modkey }, 'j', function()
     awful.client.focus.byidx(1)
   end, { description = 'focus next by index', group = g.client }),
