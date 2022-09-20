@@ -11,13 +11,13 @@ require 'wallpaper'
 local awful = require 'awful'
 local naughty = require 'naughty'
 local keymaps = require 'keymaps'
-local wibox = require 'wibox'
+local widgets = require 'widgets'
 
-awful.spawn.once 'xrandr --output eDP-1 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xrandr --output eDP-1 --off'
 awful.spawn.once 'xrandr --output HDMI-2 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xset r rate 500 60'
 awful.spawn.once 'picom --experimental-backend'
+awful.spawn.once 'lxqt-policykit-agent'
 
 tag.connect_signal('request::default_layouts', function()
   awful.layout.append_default_layouts {
@@ -38,37 +38,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
   -- Each screen has its own tag table.
   awful.tag({ '1', '2', '3', '4', '5', '6', '7', '8', '9' }, s, awful.layout.layouts[1])
 
-  -- Create a taglist widget
-  s.mytaglist = awful.widget.taglist {
-    screen = s,
-    filter = awful.widget.taglist.filter.all,
-    buttons = {
-      awful.button({}, 1, function(t)
-        t:view_only()
-      end),
-
-      awful.button({ 'Mod4' }, 1, function(t)
-        if client.focus then
-          client.focus:move_to_tag(t)
-        end
-      end),
-
-      awful.button({}, 3, awful.tag.viewtoggle),
-      awful.button({ 'Mod4' }, 3, function(t)
-        if client.focus then
-          client.focus:toggle_tag(t)
-        end
-      end),
-
-      awful.button({}, 4, function(t)
-        awful.tag.viewprev(t.screen)
-      end),
-
-      awful.button({}, 5, function(t)
-        awful.tag.viewnext(t.screen)
-      end),
-    },
-  }
+  s.dashboard = widgets.dashboard(s)
 end)
 
 -- Keymaps
