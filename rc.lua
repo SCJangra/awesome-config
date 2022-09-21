@@ -12,7 +12,7 @@ local awful = require 'awful'
 local naughty = require 'naughty'
 local ruled = require 'ruled'
 
-local keymaps = require 'keymaps'
+local maps = require 'maps'
 local widgets = require 'widgets'
 local rules = require 'rules'
 
@@ -44,13 +44,13 @@ screen.connect_signal('request::desktop_decoration', function(s)
   s.dashboard = widgets.dashboard(s)
 end)
 
--- Keymaps
-awful.keyboard.append_global_keybindings(keymaps.global_key)
+-- Bindings
+awful.keyboard.append_global_keybindings(maps.key.global)
 client.connect_signal('request::default_keybindings', function()
-  awful.keyboard.append_client_keybindings(keymaps.client_key)
+  awful.keyboard.append_client_keybindings(maps.key.client)
 end)
 client.connect_signal('request::default_mousebindings', function()
-  awful.mouse.append_client_mousebindings(keymaps.client_mouse)
+  awful.mouse.append_client_mousebindings(maps.mouse.client)
 end)
 
 -- Rules

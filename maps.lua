@@ -16,7 +16,8 @@ local g = {
   awesome = 'AWESOME',
 }
 
-M.global_key = {
+M.key = {}
+M.key.global = {
   map({ modkey }, 'Return', function()
     spawn(opts.terminal)
   end, { description = 'launch terminal', group = g.launcher }),
@@ -83,8 +84,7 @@ M.global_key = {
     description = 'show passwords',
   }),
 }
-
-M.client_key = {
+M.key.client = {
   map({ modkey, 'Shift' }, 'c', function(c)
     c:kill()
   end, { description = 'close', group = g.client }),
@@ -95,7 +95,8 @@ M.client_key = {
   end, { description = '(un)maximize', group = g.client }),
 }
 
-M.client_mouse = {
+M.mouse = {}
+M.mouse.client = {
   awful.button({}, 1, function(c)
     c:activate { context = 'mouse_click' }
   end),
