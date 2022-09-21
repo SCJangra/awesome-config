@@ -45,9 +45,12 @@ screen.connect_signal('request::desktop_decoration', function(s)
 end)
 
 -- Keymaps
-awful.keyboard.append_global_keybindings(keymaps.global)
+awful.keyboard.append_global_keybindings(keymaps.global_key)
 client.connect_signal('request::default_keybindings', function()
-  awful.keyboard.append_client_keybindings(keymaps.client)
+  awful.keyboard.append_client_keybindings(keymaps.client_key)
+end)
+client.connect_signal('request::default_mousebindings', function()
+  awful.mouse.append_client_mousebindings(keymaps.client_mouse)
 end)
 
 -- Rules
