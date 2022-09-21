@@ -10,8 +10,11 @@ require 'wallpaper'
 
 local awful = require 'awful'
 local naughty = require 'naughty'
+local ruled = require 'ruled'
+
 local keymaps = require 'keymaps'
 local widgets = require 'widgets'
+local rules = require 'rules'
 
 awful.spawn.once 'xrandr --output eDP-1 --off'
 awful.spawn.once 'xrandr --output HDMI-2 --mode 1920x1080 --rate 60'
@@ -45,4 +48,11 @@ end)
 awful.keyboard.append_global_keybindings(keymaps.global)
 client.connect_signal('request::default_keybindings', function()
   awful.keyboard.append_client_keybindings(keymaps.client)
+end)
+
+-- Rules
+ruled.client.connect_signal('request::rules', function()
+  ruled.client.append_rules {
+    rules.all,
+  }
 end)
