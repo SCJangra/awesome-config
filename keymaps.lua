@@ -8,13 +8,15 @@ local map = awful.key
 local opts = require 'opts'
 local modkey = opts.modkey
 
+local M = {}
+
 local g = {
   launcher = 'LAUNCHER',
   client = 'CLIENT',
   awesome = 'AWESOME',
 }
 
-local global = {
+M.global = {
   map({ modkey }, 'Return', function()
     spawn(opts.terminal)
   end, { description = 'launch terminal', group = g.launcher }),
@@ -82,7 +84,7 @@ local global = {
   }),
 }
 
-local client_maps = {
+M.client_maps = {
   map({ modkey, 'Shift' }, 'c', function(c)
     c:kill()
   end, { description = 'close', group = g.client }),
@@ -93,7 +95,4 @@ local client_maps = {
   end, { description = '(un)maximize', group = g.client }),
 }
 
-return {
-  global = global,
-  client = client_maps,
-}
+return M

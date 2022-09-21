@@ -6,7 +6,9 @@ local wibox = require 'wibox'
 local opts = require 'opts'
 local modkey = opts.modkey
 
-local taglist = function(s)
+local M = {}
+
+M.taglist = function(s)
   return awful.widget.taglist {
     screen = s,
     filter = awful.widget.taglist.filter.all,
@@ -40,7 +42,7 @@ local taglist = function(s)
   }
 end
 
-local dashboard = function(s)
+M.dashboard = function(s)
   local margin = 200
   wibox {
     width = s.geometry.width - (margin * 2),
@@ -52,12 +54,9 @@ local dashboard = function(s)
     bg = '#00000000',
     widget = {
       layout = wibox.layout.align.horizontal,
-      taglist(s),
+      M.taglist(s),
     },
   }
 end
 
-return {
-  taglist = taglist,
-  dashboard = dashboard,
-}
+return M
