@@ -83,6 +83,14 @@ M.key.global = {
   end, {
     description = 'show passwords',
   }),
+
+  map({ modkey }, 'l', function()
+    awful.tag.incmwfact(0.05)
+  end, { description = 'increase master width factor', group = g.layout }),
+
+  map({ modkey }, 'h', function()
+    awful.tag.incmwfact(-0.05)
+  end, { description = 'decrease master width factor', group = g.layout }),
 }
 M.key.client = {
   map({ modkey, 'Shift' }, 'c', function(c)
