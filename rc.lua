@@ -12,6 +12,9 @@ local ruled = require 'ruled'
 local beautiful = require 'beautiful'
 local gears = require 'gears'
 
+-- Load theme before loading widgets
+beautiful.init(gears.filesystem.get_configuration_dir() .. 'theme.lua')
+
 local maps = require 'maps'
 local widgets = require 'widgets'
 local rules = require 'rules'
@@ -21,9 +24,8 @@ awful.spawn.once 'xrandr --output HDMI-2 --mode 1920x1080 --rate 60'
 awful.spawn.once 'xset r rate 500 60'
 awful.spawn.once 'picom --experimental-backend'
 awful.spawn.once 'lxqt-policykit-agent'
-
--- Theme
-beautiful.init(gears.filesystem.get_configuration_dir() .. 'theme.lua')
+awful.spawn.once 'nm-applet'
+awful.spawn.once 'copyq'
 
 tag.connect_signal('request::default_layouts', function()
   awful.layout.append_default_layouts {
