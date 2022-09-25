@@ -7,6 +7,7 @@ local map = awful.key
 
 local opts = require 'opts'
 local modkey = opts.modkey
+local wallpaper = require 'wallpaper'
 
 local M = {}
 
@@ -91,6 +92,8 @@ M.key.global = {
   map({ modkey }, 'h', function()
     awful.tag.incmwfact(-0.05)
   end, { description = 'decrease master width factor', group = g.layout }),
+
+  map({ modkey }, 'w', wallpaper.next_random, { description = 'next random wallpaper', group = g.awesome }),
 }
 M.key.client = {
   map({ modkey, 'Shift' }, 'c', function(c)

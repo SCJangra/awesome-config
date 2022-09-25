@@ -1,5 +1,7 @@
 local screen = screen
 
+local M = {}
+
 local wallpapers = {}
 local w_len = 0
 local w_index = 1
@@ -29,3 +31,10 @@ awful.spawn.with_line_callback(command, {
     end)
   end,
 })
+
+M.next_random = function()
+  w_index = math.random(1, w_len)
+  gears.wallpaper.maximized(wallpapers[w_index], awful.screen.focused())
+end
+
+return M
