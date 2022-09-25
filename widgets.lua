@@ -42,19 +42,17 @@ M.taglist = function(s)
   }
 end
 
-M.dashboard = function(s)
-  local margin = 200
-  wibox {
-    width = s.geometry.width - (margin * 2),
-    height = s.geometry.height - (margin * 2),
-    x = margin,
-    y = margin,
+M.bar = function(s)
+  return awful.wibar {
     screen = s,
-    visible = true,
-    bg = '#00000000',
+    position = 'bottom',
+    ontop = true,
     widget = {
       layout = wibox.layout.align.horizontal,
-      M.taglist(s),
+      {
+        layout = wibox.layout.fixed.horizontal,
+        M.taglist(s),
+      },
     },
   }
 end
