@@ -25,6 +25,7 @@ awful.spawn.once 'xset r rate 500 60'
 awful.spawn.once 'picom --experimental-backend'
 awful.spawn.once 'lxqt-policykit-agent'
 awful.spawn.once 'nm-applet'
+awful.spawn.once 'blueman-applet'
 awful.spawn.once 'copyq'
 
 tag.connect_signal('request::default_layouts', function()
