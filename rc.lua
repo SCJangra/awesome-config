@@ -63,5 +63,6 @@ end)
 ruled.client.connect_signal('request::rules', function()
   ruled.client.append_rules {
     rules.all,
+    rules.floating,
   }
 end)

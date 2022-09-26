@@ -11,4 +11,13 @@ rules.all = {
   },
 }
 
+rules.floating = {
+  rule_any = {
+    class = { 'Blueman-manager', 'copyq' },
+  },
+  properties = {
+    floating = true,
+  },
+}
+
 return rules
