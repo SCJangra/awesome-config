@@ -66,3 +66,12 @@ ruled.client.connect_signal('request::rules', function()
     rules.floating,
   }
 end)
+
+-- Auto hide wibar
+client.connect_signal('property::fullscreen', function(c)
+  if c.fullscreen and c == client.focus then
+    c.screen.bar.ontop = false
+  else
+    c.screen.bar.ontop = true
+  end
+end)
