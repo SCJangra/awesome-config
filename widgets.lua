@@ -2,6 +2,7 @@ local client = client
 
 local awful = require 'awful'
 local wibox = require 'wibox'
+local beautiful = require 'beautiful'
 
 local opts = require 'opts'
 local modkey = opts.modkey
@@ -42,6 +43,10 @@ M.taglist = function(s)
   }
 end
 
+M.systray = function()
+  return wibox.container.margin(wibox.widget.systray(), 0, beautiful.margin, beautiful.margin, beautiful.margin)
+end
+
 M.bar = function(s)
   return awful.wibar {
     screen = s,
@@ -52,6 +57,12 @@ M.bar = function(s)
       {
         layout = wibox.layout.fixed.horizontal,
         M.taglist(s),
+      },
+      nil,
+      {
+        layout = wibox.layout.fixed.horizontal,
+        require 'widgets.textclock'(),
+        M.systray(),
       },
     },
   }
