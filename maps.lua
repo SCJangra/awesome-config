@@ -94,6 +94,10 @@ M.key.global = {
   end, { description = 'decrease master width factor', group = g.layout }),
 
   map({ modkey }, 'w', wallpaper.next_random, { description = 'next random wallpaper', group = g.awesome }),
+
+  map({ modkey }, 'v', function()
+    spawn 'copyq show'
+  end, { description = 'show clipboard', group = g.launcher }),
 }
 M.key.client = {
   map({ modkey, 'Shift' }, 'c', function(c)
