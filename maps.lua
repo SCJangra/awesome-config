@@ -108,6 +108,10 @@ M.key.client = {
     c.floating = not c.floating
     c.maximized = not c.maximized
   end, { description = '(un)maximize', group = g.client }),
+
+  map({ modkey }, 'f', function(c)
+    c.floating = not c.floating
+  end, { description = 'toggle floating', group = g.client }),
 }
 
 M.mouse = {}
